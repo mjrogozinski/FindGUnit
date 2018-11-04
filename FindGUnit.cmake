@@ -75,7 +75,6 @@ if (NOT TARGET GUnit::GUnit)
 
     # HACK to be removed when GUnit includes <nohlmann/json.hpp> instead of <json.hpp>
     get_target_property(JSON_INC_DIR nlohmann_json::nlohmann_json INTERFACE_INCLUDE_DIRECTORIES)
-    get_target_property(GHERKIN_INC_DIR gherkin::gherkin INTERFACE_INCLUDE_DIRECTORIES)
 
     set_target_properties(GUnit::GUnit PROPERTIES
         INTERFACE_INCLUDE_DIRECTORIES ${GUNIT_INCLUDE_DIR}
