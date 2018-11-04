@@ -36,8 +36,5 @@ if (NOT TARGET gherkin::gherkin)
     set_target_properties(gherkin::gherkin PROPERTIES
         INTERFACE_INCLUDE_DIRECTORIES ${GHERKIN_INCLUDE_DIR})
     set_target_properties(gherkin::gherkin PROPERTIES
-        INTERFACE_LINK_LIBRARIES GTest::GTest)
-    set_target_properties(gherkin::gherkin PROPERTIES
-        INTERFACE_LINK_LIBRARIES ${GHERKIN_LIB_DIR}/libgherkin-cpp.a)
-
+        INTERFACE_LINK_LIBRARIES "GTest::GTest;${GHERKIN_LIB_DIR}/libgherkin-cpp.a")
 endif()
