@@ -77,10 +77,9 @@ if (NOT TARGET GUnit::GUnit)
     get_target_property(JSON_INC_DIR nlohmann_json::nlohmann_json INTERFACE_INCLUDE_DIRECTORIES)
     get_target_property(GHERKIN_INC_DIR gherkin::gherkin INTERFACE_INCLUDE_DIRECTORIES)
 
-    #APPEND somehow
     set_target_properties(GUnit::GUnit PROPERTIES
         INTERFACE_INCLUDE_DIRECTORIES ${GUNIT_INCLUDE_DIR}
-        INTERFACE_INCLUDE_DIRECTORIES "${JSON_INC_DIR}/nlohmann")
+        INTERFACE_INCLUDE_DIRECTORIES "${JSON_INC_DIR}/nlohmann") # HACK
     set_target_properties(GUnit::GUnit PROPERTIES
         INTERFACE_LINK_LIBRARIES "GTest::GTest;nlohmann_json::nlohmann_json;gherkin::gherkin;gmock")
 endif()
