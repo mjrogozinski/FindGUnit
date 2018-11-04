@@ -67,13 +67,20 @@ endif()
 
 message("GUnit found: " ${GUNIT_INCLUDE_DIR})
 find_package(GTest REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 if (NOT TARGET GUnit::GUnit)
     add_library(GUnit::GUnit INTERFACE IMPORTED)
+
+    # HACK to be removed when GUnit includes <nohlmann/json.hpp> instead of <json.hpp>
+    get_target_property(JSON_INC_DIR nlohmann_json::nlohmann_json INTERFACE_INCLUDE_DIRECTORIES)
+
     set_target_properties(GUnit::GUnit PROPERTIES
-        INTERFACE_INCLUDE_DIRECTORIES ${GUNIT_INCLUDE_DIR})
+        INTERFACE_INCLUDE_DIRECTORIES ${GUNIT_INCLUDE_DIR}
+        INTERFACE_INCLUDE_DIRECTORIES "${JSON_INC_DIR}/nlohmann") # HACK
     set_target_properties(GUnit::GUnit PROPERTIES
-        INTERFACE_LINK_LIBRARIES GTest::GTest)
+        INTERFACE_LINK_LIBRARIES GTest::GTest
+        INTERFACE_LINK_LIBRARIES nlohmann_json::nlohmann_json)
 endif()
 
 if (NOT TARGET GUnit::Main)
