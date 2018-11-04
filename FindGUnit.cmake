@@ -45,13 +45,10 @@
 #
 # ::
 #
-#     enable_testing()
 #     find_package(GUnit REQUIRED)
 #
 #     add_executable(foo foo.cc)
-#     target_link_libraries(foo GUnit::GUnit)
-#
-#     add_test(AllTestsInFoo foo)
+#     target_link_libraries(foo GUnit::GUnit GUnit::Main)
 
 find_path(GUNIT_INCLUDE_DIR GUnit.h
     HINTS
